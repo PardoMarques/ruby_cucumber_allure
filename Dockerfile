@@ -1,8 +1,8 @@
 ARG RUBY_VERSION=3.0.0
 FROM ruby:${RUBY_VERSION}
 
-WORKDIR /test-admission-command/
+WORKDIR /ruby_cucumber_allure/
 
-COPY . /test-admission-command/
+COPY . /ruby_cucumber_allure/
 
 RUN gem install bundle && bundle install
