@@ -3,7 +3,11 @@ def SetPath(nodejsversion) {
 }
 
 pipeline {
-    agent { node { label 'linux && nodejs' }}
+    agent {
+        node {
+            label 'master'
+        }
+    }
 
     environment {
         PROJECT_NAME= "ruby_cucumber_allure"
