@@ -4,18 +4,13 @@ pipeline {
     agent {
         docker {
             image "ruby:alpine"
-            args "--network=skynet"
         }
     }
 
     environment {
         PROJECT_NAME= "ruby_cucumber_allure"        
     }
-
-    options {
-        timeout(time: 2, unit: 'HOURS')
-    }
-
+    
     stages {
 
         stage("Build") {
@@ -36,7 +31,7 @@ pipeline {
                         docker run --rm --network host \
                         -v ${env.WORKSPACE}/allure-results:/$PROJECT_NAME/allure-results \
                         -i $DOCKER_BUILD_TAG \
-                        bundle execparallel_cucumber -o "-t @smoke -p hml" features
+                        bundle exec parallel_cucumber -o "-t @smoke -p hml" features
                         """
                     }
                 }
